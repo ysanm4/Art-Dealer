@@ -1,11 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="9878ddc9-dfe2-4bd7-8375-ab9096d4d952" name="Changes" comment="" />
+    <list default="true" id="9878ddc9-dfe2-4bd7-8375-ab9096d4d952" name="Changes" comment="feat: Implement Deck and Hand classes&#10;&#10;This commit introduces the Deck class responsible for managing the deck of playing cards and the Hand class to represent a player's hand in the game.">
+      <change afterPath="$PROJECT_DIR$/src/main/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Art_Dealer.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Art_Dealer.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/PlayingCards/10_of_clubs.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/PlayingCards/10_of_clubs.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/PlayingCards/10_of_diamonds.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/PlayingCards/10_of_diamonds.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/PlayingCards/10_of_hearts.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/PlayingCards/10_of_hearts.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/PlayingCards/10_of_spades.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/PlayingCards/10_of_spades.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/PlayingCards/11_of_clubs.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/PlayingCards/11_of_clubs.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/PlayingCards/11_of_diamonds.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/PlayingCards/11_of_diamonds.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/PlayingCards/11_of_hearts.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/PlayingCards/11_of_hearts.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/PlayingCards/11_of_spades.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/PlayingCards/11_of_spades.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/PlayingCards/12_of_clubs.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/PlayingCards/12_of_clubs.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/PlayingCards/12_of_diamonds.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/PlayingCards/12_of_diamonds.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/PlayingCards/12_of_hearts.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/PlayingCards/12_of_hearts.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/PlayingCards/12_of_spades.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/PlayingCards/12_of_spades.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/PlayingCards/13_of_clubs.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/PlayingCards/13_of_clubs.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/PlayingCards/13_of_diamonds.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/PlayingCards/13_of_diamonds.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/PlayingCards/13_of_hearts.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/PlayingCards/13_of_hearts.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/PlayingCards/13_of_spades.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/PlayingCards/13_of_spades.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/PlayingCards/14_of_clubs.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/PlayingCards/14_of_clubs.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/PlayingCards/14_of_diamonds.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/PlayingCards/14_of_diamonds.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/PlayingCards/14_of_hearts.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/PlayingCards/14_of_hearts.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/PlayingCards/14_of_spades.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/PlayingCards/14_of_spades.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/PlayingCards/2_of_clubs.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/PlayingCards/2_of_clubs.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/PlayingCards/2_of_diamonds.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/PlayingCards/2_of_diamonds.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/PlayingCards/2_of_hearts.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/PlayingCards/2_of_hearts.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/PlayingCards/2_of_spades.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/PlayingCards/2_of_spades.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/PlayingCards/3_of_clubs.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/PlayingCards/3_of_clubs.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/PlayingCards/3_of_diamonds.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/PlayingCards/3_of_diamonds.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/PlayingCards/3_of_hearts.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/PlayingCards/3_of_hearts.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/PlayingCards/3_of_spades.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/PlayingCards/3_of_spades.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/PlayingCards/4_of_clubs.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/PlayingCards/4_of_clubs.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/PlayingCards/4_of_diamonds.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/PlayingCards/4_of_diamonds.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/PlayingCards/4_of_hearts.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/PlayingCards/4_of_hearts.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/PlayingCards/4_of_spades.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/PlayingCards/4_of_spades.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/PlayingCards/5_of_clubs.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/PlayingCards/5_of_clubs.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/PlayingCards/5_of_diamonds.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/PlayingCards/5_of_diamonds.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/PlayingCards/5_of_hearts.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/PlayingCards/5_of_hearts.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/PlayingCards/5_of_spades.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/PlayingCards/5_of_spades.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/PlayingCards/6_of_clubs.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/PlayingCards/6_of_clubs.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/PlayingCards/6_of_diamonds.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/PlayingCards/6_of_diamonds.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/PlayingCards/6_of_hearts.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/PlayingCards/6_of_hearts.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/PlayingCards/6_of_spades.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/PlayingCards/6_of_spades.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/PlayingCards/7_of_clubs.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/PlayingCards/7_of_clubs.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/PlayingCards/7_of_diamonds.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/PlayingCards/7_of_diamonds.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/PlayingCards/7_of_hearts.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/PlayingCards/7_of_hearts.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/PlayingCards/7_of_spades.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/PlayingCards/7_of_spades.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/PlayingCards/8_of_clubs.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/PlayingCards/8_of_clubs.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/PlayingCards/8_of_diamonds.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/PlayingCards/8_of_diamonds.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/PlayingCards/8_of_hearts.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/PlayingCards/8_of_hearts.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/PlayingCards/8_of_spades.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/PlayingCards/8_of_spades.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/PlayingCards/9_of_clubs.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/PlayingCards/9_of_clubs.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/PlayingCards/9_of_diamonds.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/PlayingCards/9_of_diamonds.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/PlayingCards/9_of_hearts.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/PlayingCards/9_of_hearts.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/PlayingCards/9_of_spades.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/PlayingCards/9_of_spades.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/PlayingCards/WebReferenceAboutCardImages.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/PlayingCards/WebReferenceAboutCardImages.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/PlayingCards/black_joker.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/PlayingCards/black_joker.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/PlayingCards/red_joker.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/PlayingCards/red_joker.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/cardlogo.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cardlogo.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/controller/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/controller/GameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/view/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/view/GUI.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -21,11 +94,21 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.App.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main"
+    "git-widget-placeholder": "main",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/src/images" />
+      <recent name="$PROJECT_DIR$/src/resources" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -35,6 +118,28 @@
       <option name="presentableId" value="Default" />
       <updated>1708034731435</updated>
     </task>
+    <task id="LOCAL-00001" summary="feat: Add card class, Rank, and Suit enum&#10;&#10;This commit adds the Card class to represent a playing card in the game. Additionally, it introduces the Rank enum to define the rank of the cards (e.g., Ace, King, Queen, etc.) and the Suit enum to represent the suit of the cards (e.g., Hearts, Diamonds, Spades, Clubs).">
+      <option name="closed" value="true" />
+      <created>1708036509180</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1708036509180</updated>
+    </task>
+    <task id="LOCAL-00002" summary="feat: Implement Deck and Hand classes&#10;&#10;This commit introduces the Deck class responsible for managing the deck of playing cards and the Hand class to represent a player's hand in the game.">
+      <option name="closed" value="true" />
+      <created>1708037097221</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1708037097221</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="feat: Add card class, Rank, and Suit enum&#10;&#10;This commit adds the Card class to represent a playing card in the game. Additionally, it introduces the Rank enum to define the rank of the cards (e.g., Ace, King, Queen, etc.) and the Suit enum to represent the suit of the cards (e.g., Hearts, Diamonds, Spades, Clubs)." />
+    <MESSAGE value="feat: Implement Deck and Hand classes&#10;&#10;This commit introduces the Deck class responsible for managing the deck of playing cards and the Hand class to represent a player's hand in the game." />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: Implement Deck and Hand classes&#10;&#10;This commit introduces the Deck class responsible for managing the deck of playing cards and the Hand class to represent a player's hand in the game." />
   </component>
 </project>
