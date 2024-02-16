@@ -1,6 +1,7 @@
 package main.controller;
 
 
+import main.log.File;
 import main.model.Deck;
 import main.model.Hand;
 import main.view.GUI;
@@ -15,13 +16,16 @@ public class GameController {
         this.gui.addStartButtonListener(e -> startGame());
         this.gui.addDealButtonListener(e -> dealCards());
         this.gui.addQuitButtonListener(e -> quitGame());
+
     }
 
     private void startGame() {
         gui.showGameScreen();
+        File.openFile();
     }
 
     private void quitGame() {
+        File.closeFile();
         gui.showGoodbyeScreen();
     }
 
@@ -30,5 +34,6 @@ public class GameController {
         Hand hand = new Hand();
         deck.dealCardsIntoHand(hand, 4);
         gui.displayHand(hand);
+        File.writeToFile(hand.format_hand_for_logger());
     }
 }

@@ -13,9 +13,6 @@ public class GUI {
 
     private final JFrame frame;
     private JPanel cardPanel;
-    private JButton startButton;
-    private JButton dealButton;
-    private JButton quitButton;
 
     private ActionListener startButtonListener;
     private ActionListener dealButtonListener;
@@ -40,7 +37,7 @@ public class GUI {
         welcomeLabel.setHorizontalAlignment(SwingConstants.CENTER);
         welcomePanel.add(welcomeLabel, BorderLayout.CENTER);
 
-        startButton = new JButton("Start Game");
+        JButton startButton = new JButton("Start Game");
         welcomePanel.add(startButton, BorderLayout.SOUTH);
 
         startButton.addActionListener(e -> {
@@ -61,7 +58,7 @@ public class GUI {
         mainPanel.add(cardPanel, BorderLayout.CENTER);
 
         JPanel buttonPanel = new JPanel(new FlowLayout());
-        dealButton = new JButton("Deal Cards"); // Changed to use class variable
+        JButton dealButton = new JButton("Deal Cards"); // Changed to use class variable
         buttonPanel.add(dealButton);
 
         dealButton.addActionListener(e -> {
@@ -70,7 +67,7 @@ public class GUI {
             }
         });
 
-        quitButton = new JButton("Quit"); // Changed to use class variable
+        JButton quitButton = new JButton("Quit"); // Changed to use class variable
         buttonPanel.add(quitButton);
 
         quitButton.addActionListener(e -> {
