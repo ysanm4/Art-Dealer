@@ -17,6 +17,8 @@ public class GameController {
     private final Deck deck;
     private final GUI gui;
 
+    final int NUM_CARDS_TO_DEAL = 4;
+
     /*
     Constructor takes in a Deck and GUI component as parameters
      */
@@ -55,7 +57,7 @@ public class GameController {
     private void dealCards() {
         // System.out.println("Deal Cards entered");
         Hand hand = new Hand();
-        deck.dealCardsIntoHand(hand, 4);
+        deck.dealCardsIntoHand(hand, NUM_CARDS_TO_DEAL);
         gui.displayHand(hand);
         File.writeToFile(hand.format_hand_for_logger());
     }

@@ -39,7 +39,7 @@ public class GUI {
     startApp() is a simple method that calls the createAndShowWelcomeScreen in order to show the programs welcome screen
      */
     public void startApp() {
-        createAndShowWelcomeScreen();
+        showWelcomeScreen();
     }
 
 
@@ -49,41 +49,33 @@ public class GUI {
      simple label with an image and the name of the program, and the button label contains a button that will exit
      the welcome screen and start the program.
      */
-    private void createAndShowWelcomeScreen() {
-        JPanel welcomePanel = new JPanel();
-        welcomePanel.setLayout(new BorderLayout());
+    private void showWelcomeScreen() {
+        JPanel welcomeScreenPanel = new JPanel();
+        welcomeScreenPanel.setLayout(new BorderLayout());
 
         // Description Section
-        JLabel descriptionLabel = new JLabel("<html><body><h1>How to Play</h1>Art Dealer is designed to randomly " +
-                "select and display four " +
-                "cards from a standard deck of 52 cards.<br><br>Each time you click the \"Draw Cards\" button, you " +
-                "will " +
-                "be dealt a new set of 4 cards.<br>You can repeat this process as many times as you would like" +
-                ".<br>When you are ready to exit the program, simply click the \"Quit\" button.<br><br>Press " +
-                "\"Start\" at the bottom of the screen to begin.<br><br><strong>Happy drawing!</strong>" +
-                "</body></html>");
-        descriptionLabel.setHorizontalAlignment(JLabel.CENTER);
-        // descriptionLabel.setBorder(BorderFactory.createLineBorder(Color.black, 2));
-        welcomePanel.add(descriptionLabel, BorderLayout.NORTH);
+        JLabel gameDescriptionLabel = getjLabel(); // a method below that returns the content of the label
+        // gameDescriptionLabel.setBorder(BorderFactory.createLineBorder(Color.black, 2));
+        welcomeScreenPanel.add(gameDescriptionLabel, BorderLayout.NORTH);
 
         // Welcome, Section
-        JLabel welcomeLabel = new JLabel("Welcome to Art Dealer!");
-        welcomeLabel.setFont(new Font("Arial", Font.BOLD, 30));
-        ImageIcon image = new ImageIcon(Objects.requireNonNull(getClass().getResource("/main/resources/cardLogo.png")));
-        welcomeLabel.setHorizontalTextPosition(JLabel.CENTER);
-        welcomeLabel.setVerticalTextPosition(JLabel.TOP);
-        welcomeLabel.setIcon(image);
-        welcomeLabel.setHorizontalAlignment(JLabel.CENTER);
-        welcomePanel.add(welcomeLabel, BorderLayout.CENTER);
+        JLabel welcomeMessageLabel = new JLabel("Welcome to Art Dealer!");
+        welcomeMessageLabel.setFont(new Font("Arial", Font.BOLD, 30));
+        ImageIcon cardLogo = new ImageIcon(Objects.requireNonNull(getClass().getResource("/main/resources/cardLogo.png")));
+        welcomeMessageLabel.setHorizontalTextPosition(JLabel.CENTER);
+        welcomeMessageLabel.setVerticalTextPosition(JLabel.TOP);
+        welcomeMessageLabel.setIcon(cardLogo);
+        welcomeMessageLabel.setHorizontalAlignment(JLabel.CENTER);
+        welcomeScreenPanel.add(welcomeMessageLabel, BorderLayout.CENTER);
 
         // Button Section
         JButton startButton = new JButton("Start Game");
 
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         buttonPanel.add(startButton);
-        welcomePanel.add(buttonPanel, BorderLayout.SOUTH);
+        welcomeScreenPanel.add(buttonPanel, BorderLayout.SOUTH);
 
-        welcomePanel.setBorder(new EmptyBorder(10, 10, 40, 10));
+        welcomeScreenPanel.setBorder(new EmptyBorder(10, 10, 40, 10));
 
         // Instead of handling events in the GUI, the flow is returned to the GameController
         startButton.addActionListener(e -> {
@@ -93,24 +85,36 @@ public class GUI {
         });
 
         /*
-        once everything is added to the welcomePanel, add it to the main frame
+        once everything is added to the welcomeScreenPanel, add it to the main frame
          */
-        frame.getContentPane().add(welcomePanel);
+        frame.getContentPane().add(welcomeScreenPanel);
         frame.setVisible(true);
     }
 
+    private static JLabel getjLabel() {
+        JLabel descriptionLabel = new JLabel("<html><body><h1>How to Play</h1>Art Dealer is designed to randomly " +
+                "select and display four " +
+                "cards from a standard deck of 52 cards.<br><br>Each time you click the \"Draw Cards\" button, you " +
+                "will " +
+                "be dealt a new set of 4 cards.<br>You can repeat this process as many times as you would like" +
+                ".<br>When you are ready to exit the program, simply click the \"Quit\" button.<br><br>Press " +
+                "\"Start\" at the bottom of the screen to begin.<br><br><strong>Happy drawing!</strong>" +
+                "</body></html>");
+        descriptionLabel.setHorizontalAlignment(JLabel.CENTER);
+        return descriptionLabel;
+    }
 
 
     /*
     showGameScreen is responsible for creating and showing the main game window
      */
     public void showGameScreen() {
-        JPanel mainPanel = new JPanel(new BorderLayout());
+        JPanel welcomeScreenPanel = new JPanel(new BorderLayout());
 
         // Card Panel
         cardPanel = new JPanel(new FlowLayout());
         cardPanel.setBorder(new EmptyBorder(20, 20, 20, 20));
-        mainPanel.add(cardPanel, BorderLayout.CENTER);
+        welcomeScreenPanel.add(cardPanel, BorderLayout.CENTER);
 
         // Button Panel
         JPanel buttonPanel = new JPanel(new FlowLayout());
@@ -138,10 +142,10 @@ public class GUI {
             }
         });
 
-        mainPanel.add(buttonPanel, BorderLayout.SOUTH);
+        welcomeScreenPanel.add(buttonPanel, BorderLayout.SOUTH);
 
         frame.getContentPane().removeAll(); // clear components from previous screens
-        frame.getContentPane().add(mainPanel); // Add new components defined in mainPanel
+        frame.getContentPane().add(welcomeScreenPanel); // Add new components defined in welcomeScreenPanel
         frame.revalidate(); // Re-validate the frame
         frame.repaint(); // Repaint the frame
     }
@@ -156,17 +160,17 @@ public class GUI {
         for (Card card : hand.getHand()) {
             String imagePath = "/main/resources/PlayingCards/" + card.getImageFilePath();
             // System.out.println(imagePath);
-            ImageIcon icon = new ImageIcon(Objects.requireNonNull(getClass().getResource(imagePath)));
+            ImageIcon cardImage = new ImageIcon(Objects.requireNonNull(getClass().getResource(imagePath)));
 
             // https://docs.oracle.com/javase/8/docs/api/java/awt/Image.html
-            Image image = icon.getImage().getScaledInstance(50, 150, Image.SCALE_SMOOTH);
-            ImageIcon resizedIcon = new ImageIcon(image);
-            JLabel label = new JLabel(resizedIcon);
+            Image scaledImage = cardImage.getImage().getScaledInstance(75, 100, Image.SCALE_SMOOTH);
+            ImageIcon resizedIcon = new ImageIcon(scaledImage);
+            JLabel imageLabel = new JLabel(resizedIcon);
 
             // adds padding between the cards
-            label.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+            imageLabel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 
-            cardPanel.add(label);
+            cardPanel.add(imageLabel);
         }
         cardPanel.revalidate();
         cardPanel.repaint();
@@ -195,22 +199,22 @@ public class GUI {
      */
     public void showGoodbyeScreen() {
         // Goodbye Panel Setup
-        JPanel goodbyePanel = new JPanel();
-        goodbyePanel.setLayout(new BorderLayout());
+        JPanel goodbyeScreenPanel = new JPanel();
+        goodbyeScreenPanel.setLayout(new BorderLayout());
 
         // Goodbye label setup
-        JLabel goodbyeLabel = new JLabel("Thanks for playing Art Dealer!");
-        goodbyeLabel.setFont(new Font("Arial", Font.BOLD, 40));
-        goodbyeLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        goodbyePanel.add(goodbyeLabel, BorderLayout.CENTER);
+        JLabel goodbyeMessageLabel = new JLabel("Thanks for playing Art Dealer!");
+        goodbyeMessageLabel.setFont(new Font("Arial", Font.BOLD, 40));
+        goodbyeMessageLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        goodbyeScreenPanel.add(goodbyeMessageLabel, BorderLayout.CENTER);
 
         frame.getContentPane().removeAll(); // remove previous content from the frame
-        frame.getContentPane().add(goodbyePanel);
+        frame.getContentPane().add(goodbyeScreenPanel);
         frame.setVisible(true);
 
-        // Adds a 5 second timer for the goodbye screen to show before terminating the program
-        Timer timer = new Timer(5000, e -> System.exit(0));
-        timer.setRepeats(false);
-        timer.start();
+        // Adds a 5-second exitTimer for the goodbye screen to show before terminating the program
+        Timer exitTimer = new Timer(5000, e -> System.exit(0));
+        exitTimer.setRepeats(false);
+        exitTimer.start();
     }
 }
