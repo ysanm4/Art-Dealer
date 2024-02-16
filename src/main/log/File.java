@@ -1,8 +1,13 @@
-package main.log;
+/*
+The File class is a utility class used to log the dealt hands to an external file.
+Authored by Adam Loepker
+ */
 
 //https://www.w3schools.com/java/java_methods.asp
 //https://www.geeksforgeeks.org/io-bufferedwriter-class-methods-java/
 //https://www.educative.io/answers/what-is-the-printstacktrace-method-in-java
+
+package main.log;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
