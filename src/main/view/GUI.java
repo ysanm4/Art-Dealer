@@ -54,13 +54,16 @@ public class GUI {
         welcomePanel.setLayout(new BorderLayout());
 
         // Description Section
-        JLabel descriptionLabel = new JLabel("<html><body>Art Dealer is designed to randomly select and display four " +
-                "cards from a standard deck of 52 cards.<br>Each time you click the \"Draw Cards\" button, you will " +
+        JLabel descriptionLabel = new JLabel("<html><body><h1>How to Play</h1>Art Dealer is designed to randomly " +
+                "select and display four " +
+                "cards from a standard deck of 52 cards.<br><br>Each time you click the \"Draw Cards\" button, you " +
+                "will " +
                 "be dealt a new set of 4 cards.<br>You can repeat this process as many times as you would like" +
-                ".<br>When you are ready to exit the program, simply click the \"Quit\" button.<br>Press " +
-                "\"Start\" at the bottom of the screen to begin.<br>Happy drawing!" +
+                ".<br>When you are ready to exit the program, simply click the \"Quit\" button.<br><br>Press " +
+                "\"Start\" at the bottom of the screen to begin.<br><br><strong>Happy drawing!</strong>" +
                 "</body></html>");
         descriptionLabel.setHorizontalAlignment(JLabel.CENTER);
+        // descriptionLabel.setBorder(BorderFactory.createLineBorder(Color.black, 2));
         welcomePanel.add(descriptionLabel, BorderLayout.NORTH);
 
         // Welcome, Section
@@ -117,6 +120,7 @@ public class GUI {
         JButton quitButton = new JButton("Quit");
         buttonPanel.add(quitButton);
 
+        buttonPanel.setBorder(new EmptyBorder(0, 0, 20, 0));
 
         /*
         Once again, the action listeners for the buttons return flow to the game controller rather than handling them
@@ -153,7 +157,9 @@ public class GUI {
             String imagePath = "/main/resources/PlayingCards/" + card.getImageFilePath();
             // System.out.println(imagePath);
             ImageIcon icon = new ImageIcon(Objects.requireNonNull(getClass().getResource(imagePath)));
-            Image image = icon.getImage().getScaledInstance(100, 150, Image.SCALE_SMOOTH);
+
+            // https://docs.oracle.com/javase/8/docs/api/java/awt/Image.html
+            Image image = icon.getImage().getScaledInstance(50, 150, Image.SCALE_SMOOTH);
             ImageIcon resizedIcon = new ImageIcon(image);
             JLabel label = new JLabel(resizedIcon);
 
