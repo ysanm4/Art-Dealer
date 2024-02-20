@@ -9,18 +9,27 @@ package main.view;
 
 import main.model.Card;
 import main.model.Hand;
+import main.model.Rank;
+import main.model.Suit;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.Objects;
+import java.util.HashSet;
+import java.util.Set;
 
-public class GUI {
+public class GUI<CardPanel> {
+    // https://www.w3schools.com/java/java_hashset.asp
+    // https://www.geeksforgeeks.org/set-in-java/
+    private Set<Card> selectedCardsSet = new HashSet<>();
 
     // Data Attributes
     private final JFrame frame;
     private JPanel cardPanel;
+    private JPanel previousCards;
+    private JScrollPane previousCardsScroll;
     private ActionListener startButtonListener;
     private ActionListener dealButtonListener;
     private ActionListener quitButtonListener;
@@ -115,6 +124,11 @@ public class GUI {
         cardPanel = new JPanel(new FlowLayout());
         cardPanel.setBorder(new EmptyBorder(20, 20, 20, 20));
         welcomeScreenPanel.add(cardPanel, BorderLayout.CENTER);
+        previousCards = new JPanel();
+        previousCards.setLayout(new BoxLayout(previousCards, BoxLayout.Y_AXIS));
+        previousCards.setBorder(new EmptyBorder(10, 10, 10, 10));
+        previousCardsScroll = new JScrollPane(previousCards);
+        welcomeScreenPanel.add(previousCardsScroll, BorderLayout.WEST);
 
         // Button Panel
         JPanel buttonPanel = new JPanel(new FlowLayout());
@@ -155,13 +169,11 @@ public class GUI {
      */
     public void displayHand(Hand hand) {
         cardPanel.removeAll(); // remove previous cards
-
         // loop through the hand and display each card
         for (Card card : hand.getHand()) {
             String imagePath = "/main/resources/PlayingCards/" + card.getImageFilePath();
             // System.out.println(imagePath);
             ImageIcon cardImage = new ImageIcon(Objects.requireNonNull(getClass().getResource(imagePath)));
-
             // https://docs.oracle.com/javase/8/docs/api/java/awt/Image.html
             Image scaledImage = cardImage.getImage().getScaledInstance(75, 100, Image.SCALE_SMOOTH);
             ImageIcon resizedIcon = new ImageIcon(scaledImage);
@@ -176,28 +188,92 @@ public class GUI {
         cardPanel.repaint();
 
     }
+    public void displayPrevious(String cards){
+        JLabel lable = new JLabel(cards);
+        previousCards.add(lable);
+        previousCards.revalidate();
+        previousCards.repaint();
+    }
+public Card[] displayChoice() {
+    // Arrays for the suits and ranks
+    String[] suits = {"CLUBS", "DIAMONDS", "HEARTS", "SPADES"};
+    String[] ranks = {"ACE", "TWO", "THREE", "FOUR", "FIVE", "SIX", "SEVEN",
+            "EIGHT", "NINE", "TEN", "JACK", "QUEEN", "KING"};
+    Card[] userHand = new Card[4];
 
+    for (int i = 0; i < 4; i++) {
+        JComboBox<String> suitComboBox = new JComboBox<>(suits);
+        JComboBox<String> rankComboBox = new JComboBox<>(ranks);
+
+        // Create a JPanel to hold the JComboBoxes and labels
+        JPanel panel = new JPanel();
+        panel.add(new JLabel("Select a Suit:"));
+        panel.add(suitComboBox);
+        panel.add(new JLabel("Select a Rank:"));
+        panel.add(rankComboBox);
+
+        // Show the pop-up window with the drop-down menus
+        int result = JOptionPane.showConfirmDialog(null, panel, "Select a Card",
+                JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+
+        // Check if the user made a selection
+        if (result == JOptionPane.OK_OPTION) {
+            // Get the selected suit and rank
+            String selectedSuit = (String) suitComboBox.getSelectedItem();
+            String selectedRank = (String) rankComboBox.getSelectedItem();
+            // Convert the string to the Suit enum
+            // https://www.geeksforgeeks.org/converting-a-string-to-an-enum-in-java/
+            try {
+                Suit suitToEnum = Suit.valueOf(selectedSuit);
+                Rank rankToEnum = Rank.valueOf(selectedRank);
+                // https://www.w3schools.com/java/java_classes.asp
+                Card card = new Card(rankToEnum, suitToEnum);
+
+                // Check if the card is already selected
+                if (!selectedCardsSet.contains(card)) {
+                    // Add the selected card to the list and set
+                    userHand[i] = card;
+                    selectedCardsSet.add(card);
+                } else {
+                    // Display a message or handle the case where the same card is selected again
+                    int alreadyPicked = JOptionPane.showConfirmDialog(null, panel, "You already selected this card. Please try again.",
+                            JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+                    i--; // Decrement the loop counter to prompt the user for the same position again
+                }
+
+                // Add the selected card to the list
+                userHand[i] = new Card(rankToEnum, suitToEnum);
+            } catch (IllegalArgumentException e) {
+                System.out.println("There was an error " + e);
+            }
+        } else {
+            System.out.println("User canceled the selection.");
+        }
+    }
+    return userHand;
+}
     /*
     The program's action listeners are defined in the game controller so that they can return the flow to the
     controller upon events. The below methods take in the listener declared in the game controller and apply them to
     the buttons in the GUI.
      */
-    public void addStartButtonListener(ActionListener listener) {
+    public void addStartButtonListener (ActionListener listener){
         startButtonListener = listener;
     }
 
-    public void addDealButtonListener(ActionListener listener) {
+    public void addDealButtonListener (ActionListener listener){
         dealButtonListener = listener;
     }
 
-    public void addQuitButtonListener(ActionListener listener) {
+    public void addQuitButtonListener (ActionListener listener){
         quitButtonListener = listener;
     }
+
 
     /*
     Simple goodbye splash screen that shows for 5 seconds before terminating the program.
      */
-    public void showGoodbyeScreen() {
+    public void showGoodbyeScreen () {
         // Goodbye Panel Setup
         JPanel goodbyeScreenPanel = new JPanel();
         goodbyeScreenPanel.setLayout(new BorderLayout());
@@ -217,4 +293,5 @@ public class GUI {
         exitTimer.setRepeats(false);
         exitTimer.start();
     }
+
 }

@@ -54,5 +54,5 @@ public record Card(Rank rank, Suit suit) {
     private String format_suit_for_image_path() {
         return suit.name().toLowerCase();
     }
-
 }
+

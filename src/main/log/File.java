@@ -9,9 +9,7 @@ Authored by Adam Loepker
 
 package main.log;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
@@ -19,11 +17,11 @@ import java.util.logging.Logger;
 
 public class File {
     private static BufferedWriter writer;
+
     private static final Logger LOGGER = Logger.getLogger(File.class.getName());
     public static void openFile(){
         try {
             writer = new BufferedWriter(new FileWriter("usage_data.txt", true));
-
             // Add date stamp to the first new line
             SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
             String dateStamp = dateFormat.format(new Date());
@@ -42,7 +40,6 @@ public class File {
             LOGGER.log(Level.SEVERE, "Error writing to file", e);
         }
     }
-
     public static void closeFile(){
         try{
             writer.close();

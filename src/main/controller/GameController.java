@@ -6,6 +6,7 @@ starting, dealing, and ending the program.
 package main.controller;
 
 import main.log.File;
+import main.model.Card;
 import main.model.Deck;
 import main.model.Hand;
 import main.view.GUI;
@@ -57,8 +58,13 @@ public class GameController {
     private void dealCards() {
         // System.out.println("Deal Cards entered");
         Hand hand = new Hand();
-        deck.dealCardsIntoHand(hand, NUM_CARDS_TO_DEAL);
+       // deck.dealCardsIntoHand(hand, NUM_CARDS_TO_DEAL);
+        Card[] userHand = gui.displayChoice();
+        for (int i = 0; i < userHand.length; i++){
+            hand.addCard(userHand[i]);
+        }
         gui.displayHand(hand);
+        gui.displayPrevious(hand.format_hand_for_logger());
         File.writeToFile(hand.format_hand_for_logger());
     }
 }
