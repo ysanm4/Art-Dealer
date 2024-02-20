@@ -51,7 +51,6 @@ public class GUI<CardPanel> {
         showWelcomeScreen();
     }
 
-
     /*
     createAndShowWelcomeScreen() establishes a JPanel and adds a description, welcome, and button label to the panel.
      The description panel contains a description and instructions for using the program, the welcome panel is a
