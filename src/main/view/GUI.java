@@ -246,6 +246,7 @@ public Card[] displayChoice() {
             }
         } else {
             System.out.println("User canceled the selection.");
+            // Clearing the selected cards
             selectedCardsSet.clear();
         }
     }

@@ -50,7 +50,6 @@ public class GameController {
         gui.showGoodbyeScreen();
     }
 
-
     /*
     dealCards() deals cards into a user's hand and display's the cards in the GUI. It also calls the File.writeToFile
      method in order to log the hand in the external log.
