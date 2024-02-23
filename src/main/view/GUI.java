@@ -206,10 +206,10 @@ public Card[] displayChoice() {
 
         // Create a JPanel to hold the JComboBoxes and labels
         JPanel panel = new JPanel();
-        panel.add(new JLabel("Select a Suit:"));
-        panel.add(suitComboBox);
         panel.add(new JLabel("Select a Rank:"));
         panel.add(rankComboBox);
+        panel.add(new JLabel("Select a Suit:"));
+        panel.add(suitComboBox);
 
         // Show the pop-up window with the drop-down menus
         int result = JOptionPane.showConfirmDialog(null, panel, "Select a Card",
@@ -218,8 +218,8 @@ public Card[] displayChoice() {
         // Check if the user made a selection
         if (result == JOptionPane.OK_OPTION) {
             // Get the selected suit and rank
-            String selectedSuit = (String) suitComboBox.getSelectedItem();
             String selectedRank = (String) rankComboBox.getSelectedItem();
+            String selectedSuit = (String) suitComboBox.getSelectedItem();
             // Convert the string to the Suit enum
             // https://www.geeksforgeeks.org/converting-a-string-to-an-enum-in-java/
             try {
@@ -227,7 +227,6 @@ public Card[] displayChoice() {
                 Rank rankToEnum = Rank.valueOf(selectedRank);
                 // https://www.w3schools.com/java/java_classes.asp
                 Card card = new Card(rankToEnum, suitToEnum);
-
                 // Check if the card is already selected
                 if (!selectedCardsSet.contains(card)) {
                     // Add the selected card to the list and set
@@ -247,6 +246,7 @@ public Card[] displayChoice() {
             }
         } else {
             System.out.println("User canceled the selection.");
+            selectedCardsSet.clear();
         }
     }
     return userHand;
