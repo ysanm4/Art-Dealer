@@ -250,6 +250,7 @@ public Card[] displayChoice() {
             selectedCardsSet.clear();
         }
     }
+    selectedCardsSet.clear();
     return userHand;
 }
     /*
