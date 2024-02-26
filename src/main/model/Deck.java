@@ -1,6 +1,5 @@
 /*
-The Deck class is used to represent a deck of playing cards. The Deck is made up of Card objects.
-The Deck class has methods for shuffling and dealing cards.
+    The deck class was written by Dustin Yochim.
  */
 
 package main.model;
@@ -9,17 +8,25 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Represents a deck of playing cards. The Deck is made up of Card objects.
+ * The Deck class has methods for shuffling and dealing cards.
+ */
 public class Deck {
 
     private final List<Card> cards; // "cards" represents the deck of cards
 
-    // Constructor
+    /**
+     * Constructor initializes ArrayList of Cards.
+     */
     public Deck() {
         cards = new ArrayList<>();
         initializeDeck();
     }
 
-    // The initializeDeck() method utilizes the Rank and Suit enums to initialize a deck of cards
+    /**
+     * Uses the Rank and Suit enums to initialize a deck of cards.
+     */
     private void initializeDeck() {
         for (Suit suit : Suit.values()) {
             for (Rank rank : Rank.values()) {
@@ -28,17 +35,19 @@ public class Deck {
         }
     }
 
-    /* shuffleDeck() uses the Collections class to "shuffle" the deck of cards.
-    I found this method here https://stackoverflow.com/a/16112539 */
+    /**
+     * Uses the Collections.shuffle() method to "shuffle" the deck of cards.
+     */
     public void shuffleDeck() {
-        Collections.shuffle(cards);
+        Collections.shuffle(cards); // https://stackoverflow.com/a/16112539
     }
 
-    /*
-    dealCardsIntoHand() takes in a Hand and an integer representing the number of cards to be drawn.
-    The method first shuffles the deck, and then "deals" the given number of cards into the hand.
+    /**
+     * Shuffles the card deck, and then deals the given numCards into hand.
+     * @param hand The user's "hand" of cards.
+     * @param numCards The number of cards to deal.
      */
-    public void dealCardsIntoHand(Hand hand, int numCards) {
+    public void dealRandomCardsIntoHand(Hand hand, int numCards) {
         this.shuffleDeck();
 
         /*

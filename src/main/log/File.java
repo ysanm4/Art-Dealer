@@ -1,11 +1,9 @@
 /*
-The File class is a utility class used to log the dealt hands to an external file.
-Authored by Adam Loepker
+    Authored by Adam Loepker
+    https://www.w3schools.com/java/java_methods.asp
+    https://www.geeksforgeeks.org/io-bufferedwriter-class-methods-java/
+    https://www.educative.io/answers/what-is-the-printstacktrace-method-in-java
  */
-
-//https://www.w3schools.com/java/java_methods.asp
-//https://www.geeksforgeeks.org/io-bufferedwriter-class-methods-java/
-//https://www.educative.io/answers/what-is-the-printstacktrace-method-in-java
 
 package main.log;
 
@@ -15,10 +13,17 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * The File class is used to log the dealt hands to an external file.
+ */
 public class File {
     private static BufferedWriter writer;
 
     private static final Logger LOGGER = Logger.getLogger(File.class.getName());
+
+    /**
+     * Opens the log file for appending.
+     */
     public static void openFile(){
         try {
             writer = new BufferedWriter(new FileWriter("usage_data.txt", true));
@@ -32,6 +37,10 @@ public class File {
         }
     }
 
+    /**
+     * Write the user's current "hand" to the log file.
+     * @param line A users current "hand".
+     */
     public static void writeToFile(String line){
         try{
             writer.write(line);
@@ -40,6 +49,10 @@ public class File {
             LOGGER.log(Level.SEVERE, "Error writing to file", e);
         }
     }
+
+    /**
+     * Closes the log file.
+     */
     public static void closeFile(){
         try{
             writer.close();

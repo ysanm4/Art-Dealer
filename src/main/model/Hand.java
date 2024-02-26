@@ -1,32 +1,45 @@
 /*
-The Hand class is used to represent a hand of cards. It includes methods for adding cards to the hand, returning the
-hand, and formatting the hand for being output to a log,
+    Authored by Dustin Yochim
  */
 package main.model;
 
 import java.util.ArrayList;
 
+/**
+ * The Hand class is used to represent a hand of cards. It includes methods for adding cards to the hand,
+ * returning the hand, and formatting the hand for being output to a log.
+ */
 public class Hand {
     private final ArrayList<Card> cards; // cards represents the user's "hand" of cards.
 
-    // Constructor
+    /**
+     * Initializes the cards ArrayList which represents a users "hand".
+     */
     public Hand() {
         cards = new ArrayList<>();
     }
 
-    // Method takes in a Card and adds it to the hand
+    /**
+     * Adds a playing card to a users hand.
+     * @param card A playing card.
+     */
     public void addCard(Card card) {
-        cards.add(card);
+        if (card != null) {
+            cards.add(card);
+        }
     }
 
-    // Getter for the hand
+    /**
+     * @return The current cards in the users hand.
+     */
     public ArrayList<Card> getHand() {
         return cards;
     }
 
 
-    // Hands are formatted in a specific format, the Card class handles the formatting of individual cards while this
-    // method handles the formatting of the entire hand.
+    /**
+     * @return A users current hand, formatted for the logger.
+     */
     public String format_hand_for_logger() {
         StringBuilder sb = new StringBuilder();
         for (Card card : cards) {

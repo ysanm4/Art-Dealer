@@ -1,16 +1,35 @@
+/*
+    Authored by Dustin Yochim
+ */
+
 package main.model;
 
+/**
+ * Represents a playing card. Contains methods for formatting the card in different ways.
+ * @param rank The card's rank.
+ * @param suit The card's suit.
+ */
 public record Card(Rank rank, Suit suit) {
+    /**
+     * @return A card formatted for logging.
+     */
     public String format_card_for_logger() {
         String rankString = format_rank_for_logger();
         String suitString = format_suit_for_logger();
         return rankString + suitString;
     }
 
+    /**
+     * @return The file path for the current card.
+     */
     public String getImageFilePath() {
         return format_rank_for_image_path() + "_of_" + format_suit_for_image_path() + ".png";
     }
 
+
+    /**
+     * @return The rank of the current card, formatted for logging.
+     */
     public String format_rank_for_logger() {
         return switch (rank) {
             case ACE -> "A";
@@ -29,6 +48,9 @@ public record Card(Rank rank, Suit suit) {
         };
     }
 
+    /**
+     * @return The rank of the current card, formatted for the image path.
+     */
     public String format_rank_for_image_path() {
         return switch (rank) {
             case ACE -> "14";
@@ -47,10 +69,16 @@ public record Card(Rank rank, Suit suit) {
         };
     }
 
+    /**
+     * @return The suit of the current card, formatted for the logger.
+     */
     public String format_suit_for_logger() {
         return suit.name().substring(0, 1);
     }
 
+    /**
+     * @return The suit of the current card, formatted for the image path.
+     */
     private String format_suit_for_image_path() {
         return suit.name().toLowerCase();
     }

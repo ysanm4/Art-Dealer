@@ -1,8 +1,9 @@
-/*
-The GUI class handles the graphical user-interface for the app. The GUI features 3 main screens: the Welcome screen,
-the main Game Window, and the Goodbye screen.
-It uses Java's swing library. Most things used in this class I learned from watching this video.
-https://youtu.be/Kmgo00avvEw?si=5o_pSH_PQPu56Ss3
+/**
+ * Author: Dustin Yochim (unless otherwise specified)
+ * Created: 02/2024
+ * Description: This class handles the graphical user-interface for the app. The GUI features 3 main screens:
+ the Welcome screen, the main Game window, and the Goodbye screen. It uses Java's swing library. Most things
+ used in this class were learnt from https://youtu.be/Kmgo00avvEw?si=5o_pSH_PQPu56Ss3
  */
 
 package main.view;
@@ -20,22 +21,24 @@ import java.util.Objects;
 import java.util.HashSet;
 import java.util.Set;
 
-public class GUI<CardPanel> {
+/**
+ * The graphical user-interface for the application.
+ */
+public class GUI {
     // https://www.w3schools.com/java/java_hashset.asp
     // https://www.geeksforgeeks.org/set-in-java/
-    private Set<Card> selectedCardsSet = new HashSet<>();
+    private final Set<Card> selectedCardsSet = new HashSet<>();
 
     // Data Attributes
     private final JFrame frame;
     private JPanel cardPanel;
     private JPanel previousCards;
-    private JScrollPane previousCardsScroll;
     private ActionListener startButtonListener;
     private ActionListener dealButtonListener;
     private ActionListener quitButtonListener;
 
-    /*
-    Constructor is used to create the frame that is used for the entire program.
+    /**
+     * The constructor is used to create the frame that is used throughout the game.
      */
     public GUI() {
         frame = new JFrame("Art Dealer");
@@ -44,18 +47,16 @@ public class GUI<CardPanel> {
         frame.setLocationRelativeTo(null);
     }
 
-    /*
-    startApp() is a simple method that calls the createAndShowWelcomeScreen in order to show the programs welcome screen
+    /**
+     * Starts the game by showing the welcome screen.
      */
     public void startApp() {
         showWelcomeScreen();
     }
 
-    /*
-    createAndShowWelcomeScreen() establishes a JPanel and adds a description, welcome, and button label to the panel.
-     The description panel contains a description and instructions for using the program, the welcome panel is a
-     simple label with an image and the name of the program, and the button label contains a button that will exit
-     the welcome screen and start the program.
+    /**
+     * Shows the welcome screen containing a title, logo, instructions for playing the game,
+     * and a button for continuing.
      */
     private void showWelcomeScreen() {
         JPanel welcomeScreenPanel = new JPanel();
@@ -99,6 +100,9 @@ public class GUI<CardPanel> {
         frame.setVisible(true);
     }
 
+    /**
+     * @return The instructions for playing the game.
+     */
     private static JLabel getjLabel() {
         JLabel descriptionLabel = new JLabel("<html><body><h1>How to Play</h1>Art Dealer is designed to randomly " +
                 "select and display four " +
@@ -113,21 +117,21 @@ public class GUI<CardPanel> {
     }
 
 
-    /*
-    showGameScreen is responsible for creating and showing the main game window
+    /**
+     * Creates and displays the main game window.
      */
     public void showGameScreen() {
-        JPanel welcomeScreenPanel = new JPanel(new BorderLayout());
+        JPanel gameScreenPanel = new JPanel(new BorderLayout());
 
         // Card Panel
         cardPanel = new JPanel(new FlowLayout());
         cardPanel.setBorder(new EmptyBorder(20, 20, 20, 20));
-        welcomeScreenPanel.add(cardPanel, BorderLayout.CENTER);
+        gameScreenPanel.add(cardPanel, BorderLayout.CENTER);
         previousCards = new JPanel();
         previousCards.setLayout(new BoxLayout(previousCards, BoxLayout.Y_AXIS));
         previousCards.setBorder(new EmptyBorder(10, 10, 10, 10));
-        previousCardsScroll = new JScrollPane(previousCards);
-        welcomeScreenPanel.add(previousCardsScroll, BorderLayout.WEST);
+        JScrollPane previousCardsScroll = new JScrollPane(previousCards);
+        gameScreenPanel.add(previousCardsScroll, BorderLayout.WEST);
 
         // Button Panel
         JPanel buttonPanel = new JPanel(new FlowLayout());
@@ -155,16 +159,17 @@ public class GUI<CardPanel> {
             }
         });
 
-        welcomeScreenPanel.add(buttonPanel, BorderLayout.SOUTH);
+        gameScreenPanel.add(buttonPanel, BorderLayout.SOUTH);
 
         frame.getContentPane().removeAll(); // clear components from previous screens
-        frame.getContentPane().add(welcomeScreenPanel); // Add new components defined in welcomeScreenPanel
+        frame.getContentPane().add(gameScreenPanel); // Add new components defined in gameScreenPanel
         frame.revalidate(); // Re-validate the frame
         frame.repaint(); // Repaint the frame
     }
 
-    /*
-    displayHand takes in a Hand parameter and displays its cards inside the cardPanel.
+    /**
+     * Displays a user's "hand" of cards on the screen.
+     * @param hand A hand of cards.
      */
     public void displayHand(Hand hand) {
         cardPanel.removeAll(); // remove previous cards
@@ -174,7 +179,7 @@ public class GUI<CardPanel> {
             // System.out.println(imagePath);
             ImageIcon cardImage = new ImageIcon(Objects.requireNonNull(getClass().getResource(imagePath)));
             // https://docs.oracle.com/javase/8/docs/api/java/awt/Image.html
-            Image scaledImage = cardImage.getImage().getScaledInstance(75, 100, Image.SCALE_SMOOTH);
+            Image scaledImage = cardImage.getImage().getScaledInstance(90, 140, Image.SCALE_SMOOTH);
             ImageIcon resizedIcon = new ImageIcon(scaledImage);
             JLabel imageLabel = new JLabel(resizedIcon);
 
@@ -187,22 +192,38 @@ public class GUI<CardPanel> {
         cardPanel.repaint();
 
     }
+
+    /**
+     * Displays the log of "hands" on the screen.
+     * @param cards A "hand" of cards formatted for logging.
+     */
     public void displayPrevious(String cards){
-        JLabel lable = new JLabel(cards);
-        previousCards.add(lable);
+        // Authored by Ellis Twiggs Jr
+        JLabel label = new JLabel(cards);
+        label.setBorder(BorderFactory.createEmptyBorder());
+        previousCards.add(label);
         previousCards.revalidate();
         previousCards.repaint();
     }
+
+    // Authored by Ellis Twiggs Jr
+    /**
+     * Display's a window, allowing the user to select which cards to be added to his hand.
+     * @return An array of cards to be added to the user's hand.
+     */
 public Card[] displayChoice() {
     // Arrays for the suits and ranks
     String[] suits = {"CLUBS", "DIAMONDS", "HEARTS", "SPADES"};
     String[] ranks = {"ACE", "TWO", "THREE", "FOUR", "FIVE", "SIX", "SEVEN",
             "EIGHT", "NINE", "TEN", "JACK", "QUEEN", "KING"};
     Card[] userHand = new Card[4];
+    Hand hand = new Hand();
 
     for (int i = 0; i < 4; i++) {
         JComboBox<String> suitComboBox = new JComboBox<>(suits);
         JComboBox<String> rankComboBox = new JComboBox<>(ranks);
+
+
 
         // Create a JPanel to hold the JComboBoxes and labels
         JPanel panel = new JPanel();
@@ -231,7 +252,10 @@ public Card[] displayChoice() {
                 if (!selectedCardsSet.contains(card)) {
                     // Add the selected card to the list and set
                     userHand[i] = card;
+                    hand.addCard(card);
+                    displayHand(hand);
                     selectedCardsSet.add(card);
+
                 } else {
                     // Display a message or handle the case where the same card is selected again
                     int alreadyPicked = JOptionPane.showConfirmDialog(null, panel, "You already selected this card. Please try again.",
@@ -248,31 +272,46 @@ public Card[] displayChoice() {
             System.out.println("User canceled the selection.");
             // Clearing the selected cards
             selectedCardsSet.clear();
+            return null;
         }
     }
     selectedCardsSet.clear();
     return userHand;
 }
+
     /*
     The program's action listeners are defined in the game controller so that they can return the flow to the
     controller upon events. The below methods take in the listener declared in the game controller and apply them to
     the buttons in the GUI.
      */
+
+    /**
+     * Applies a listener to the start button.
+     * @param listener The start button action listener.
+     */
     public void addStartButtonListener (ActionListener listener){
         startButtonListener = listener;
     }
 
+    /**
+     * Applies a listener to the deal button.
+     * @param listener The deal button action listener.
+     */
     public void addDealButtonListener (ActionListener listener){
         dealButtonListener = listener;
     }
 
+    /**
+     * Applies a listener to the quit button.
+     * @param listener The quit button action listener.
+     */
     public void addQuitButtonListener (ActionListener listener){
         quitButtonListener = listener;
     }
 
 
-    /*
-    Simple goodbye splash screen that shows for 5 seconds before terminating the program.
+    /**
+     * Shows a goodbye screen for 5 seconds before terminating the program.
      */
     public void showGoodbyeScreen () {
         // Goodbye Panel Setup
