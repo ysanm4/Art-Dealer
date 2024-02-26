@@ -104,14 +104,18 @@ public class GUI {
      * @return The instructions for playing the game.
      */
     private static JLabel getjLabel() {
-        JLabel descriptionLabel = new JLabel("<html><body><h1>How to Play</h1>Art Dealer is designed to randomly " +
-                "select and display four " +
-                "cards from a standard deck of 52 cards.<br><br>Each time you click the \"Draw Cards\" button, you " +
-                "will " +
-                "be dealt a new set of 4 cards.<br>You can repeat this process as many times as you would like" +
-                ".<br>When you are ready to exit the program, simply click the \"Quit\" button.<br><br>Press " +
-                "\"Start\" at the bottom of the screen to begin.<br><br><strong>Happy drawing!</strong>" +
-                "</body></html>");
+        JLabel descriptionLabel = new JLabel("<html>" +
+                "<body>" +
+                "<h1>How to Play</h1>" +
+                "Art Dealer lets you choose and see four cards from a standard deck of 52 cards." +
+                "<ol>" +
+                "<li>Click the \"Pick Cards\" button to start drawing cards. You can do this multiple times.</li>" +
+                "<li>When you want to stop playing, click the \"Quit\" button.</li>" +
+                "<li>Press \"Start Game\" at the bottom of the screen to begin.</li>" +
+                "</ol>"+
+                "<strong>Have fun playing!</strong>" +
+                "</body>" +
+                "</html>");
         descriptionLabel.setHorizontalAlignment(JLabel.CENTER);
         return descriptionLabel;
     }
@@ -135,7 +139,7 @@ public class GUI {
 
         // Button Panel
         JPanel buttonPanel = new JPanel(new FlowLayout());
-        JButton dealButton = new JButton("Deal Cards");
+        JButton dealButton = new JButton("Pick Cards");
         buttonPanel.add(dealButton);
 
         JButton quitButton = new JButton("Quit");
