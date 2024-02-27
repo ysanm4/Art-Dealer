@@ -131,7 +131,11 @@ public class GUI {
         cardPanel = new JPanel(new FlowLayout());
         cardPanel.setBorder(new EmptyBorder(20, 20, 20, 20));
         gameScreenPanel.add(cardPanel, BorderLayout.CENTER);
+        // Previous Cards
         previousCards = new JPanel();
+        JLabel heading = new JLabel("Previous Hands");
+        heading.setFont(new Font("Arial", Font.BOLD, 12));
+        previousCards.add(heading);
         previousCards.setLayout(new BoxLayout(previousCards, BoxLayout.Y_AXIS));
         previousCards.setBorder(new EmptyBorder(10, 10, 10, 10));
         JScrollPane previousCardsScroll = new JScrollPane(previousCards);
