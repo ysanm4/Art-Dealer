@@ -51,4 +51,8 @@ public class Hand {
         }
         return sb.toString();
     }
+
+    public void clear() {
+        cards.clear();
+    }
 }
