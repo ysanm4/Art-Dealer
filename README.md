@@ -20,7 +20,7 @@
  <img width="912" alt="Screenshot 2024-03-05 at 12 32 19 PM" src="https://github.com/DustinYochim/Art-Dealer/assets/70305015/c9ab2868-4f14-4ea4-8bbc-c5b31b996f81">
 
  ### Goodbye Screen
-<img width="912" alt="Screenshot 2024-03-05 at 12 30 52 PM" src="https://github.com/DustinYochim/Art-Dealer/assets/70305015/d88021ab-0beb-48e1-9015-a108b8e628be">
+<img width="912" alt="Screenshot 2024-03-05 at 12 32 23 PM" src="https://github.com/DustinYochim/Art-Dealer/assets/70305015/2dce4c70-4558-4cdd-b441-c386a647dd83">
 
 ## Programmers Guide
 1. To run the program, clone the repository from https://github.com/DustinYochim/Art-Dealer down to your local machine.
