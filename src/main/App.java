@@ -1,8 +1,19 @@
 /*
- Art Dealer by Dustin Yochim, Ellis Twiggs Jr, Jonathan Schweighauser, Adam Loepker, and Yosef Alqufidi
+ Art Dealer was written by Dustin Yochim, Ellis Twiggs Jr, Jonathan Schweighauser, Adam Loepker, and Yosef Alqufidi
+ in Spring 2024 Semester as part of the Introduction to Software Profession class at the University of Missouri - Saint
+ Louis.
 
  This Java program was an attempt to design a program following the Model View Controller design pattern
- discussed here https://www.geeksforgeeks.org/mvc-design-pattern/
+ discussed here https://www.geeksforgeeks.org/mvc-design-pattern/. It contains the classes: Card for a single playing
+  card represented using the Rank and Suit enums, Deck for a collection of 52 Cards, and Hand as a collection of 4
+  Cards. The Deck and Hand classes use an ArrayList as their central Data Structure to enable easy shuffling and
+  dealing of cards.
+
+  In order to run the program, clone the repository from https://github.com/DustinYochim/Art-Dealer down to your
+  local machine. Then open the program in your favorite IDE (we developed using IntelliJ). Once you have the program
+  open in your IDE, in order to build the program you may have to select the Main class. The "Main" class of this
+  project is App.java. Once you have the program open in your IDE and have selected App.java as the "Main" class.
+  Click the "Run" option in your IDE to start the App!
 
  Homework 1
  The program lets you deal out 4 cards where it will show you your hand, and log your hand in a separate file, you
