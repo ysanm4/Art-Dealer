@@ -26,7 +26,7 @@ public class File {
      */
     public static void openFile(){
         try {
-            writer = new BufferedWriter(new FileWriter("usage_data.txt", true));
+            writer = new BufferedWriter(new FileWriter("CardsDealt.txt", true));
             // Add date stamp to the first new line
             SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
             String dateStamp = dateFormat.format(new Date());
