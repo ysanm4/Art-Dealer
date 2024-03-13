@@ -105,17 +105,36 @@ public class GUI {
      */
     private static JLabel getjLabel() {
         JLabel descriptionLabel = new JLabel("<html>" +
-                "<body>" +
-                "<h1>How to Play</h1>" +
-                "Art Dealer lets you choose and see four cards from a standard deck of 52 cards." +
-                "<ol>" +
-                "<li>Click the \"Pick Cards\" button to start drawing cards. You can do this multiple times.</li>" +
-                "<li>When you want to stop playing, click the \"Quit\" button.</li>" +
-                "<li>Press \"Start Game\" at the bottom of the screen to begin.</li>" +
-                "</ol>"+
-                "<strong>Have fun playing!</strong>" +
-                "</body>" +
-                "</html>");
+                 "<body>"
+                + "<h2>Welcome to \"The Art Dealer\" Game!</h2>"
+                + "<p>In this game, you'll be playing against the computer, known as the Art Dealer. Your goal is to get the Art Dealer to \"buy\" as many cards as possible.</p>"
+                + "<h3>Gameplay Instructions:</h3>"
+                + "<ol>"
+                + "<li><strong>Selection Process:</strong>"
+                + "<ul>"
+                + "<li>You will pick four cards, one by one.</li>"
+                + "<li>Each time you make a selection, the program will display the chosen card immediately.</li>"
+                + "<li>If you attempt to pick a card that has already been chosen in the current round, you'll receive an error message and be asked to choose another card.</li>"
+                + "</ul>"
+                + "</li>"
+                + "<li><strong>Round Structure:</strong>"
+                + "<ul>"
+                + "<li>After you pick four cards, the Art Dealer will make its selection based on a predetermined pattern.</li>"
+                + "<li>The Art Dealer will select any red cards (hearts or diamonds) and will not select any black cards (spades or clubs).</li>"
+                + "<li>The Art Dealer's selections will be displayed to you, indicating which cards it has chosen.</li>"
+                + "<li>You can choose to continue playing more rounds or stop the program altogether.</li>"
+                + "</ul>"
+                + "</li>"
+                + "<li><strong>History Display:</strong>"
+                + "<ul>"
+                + "<li>All selected cards, along with an indication of which cards were chosen by the Art Dealer, will be added to the history.</li>"
+                + "<li>You can view the history, likely in a scrollable window, to keep track of your progress.</li>"
+                + "</ul>"
+                + "</li>"
+                + "</ol>"
+                + "<p>Enjoy playing \"The Art Dealer\" game!</p>"
+                + "</body>"
+                + "</html>");
         descriptionLabel.setHorizontalAlignment(JLabel.CENTER);
         return descriptionLabel;
     }
