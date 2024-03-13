@@ -8,6 +8,7 @@ import main.log.File;
 import main.model.Card;
 import main.model.Deck;
 import main.model.Hand;
+import main.model.Suit;
 import main.view.GUI;
 
 /**
@@ -22,8 +23,9 @@ public class GameController {
 
     /**
      * The Constructor initializes the action listeners.
+     *
      * @param deck A deck of cards.
-     * @param gui An instance of the GUI.
+     * @param gui  An instance of the GUI.
      */
     public GameController(Deck deck, GUI gui) {
         /*
@@ -73,8 +75,31 @@ public class GameController {
                 hand.addCard(card);
             }
             gui.displayHand(hand);
+            Hand dealerHand = dealerChooseCards(hand); // Call dealerChooseCards method
             gui.displayPrevious(hand.format_hand_for_logger());
             File.writeToFile(hand.format_hand_for_logger());
         }
+    }
+
+    /**
+     * dealerChooseCards() method selects cards from the user's hand based on specific criteria
+     *
+     * @param hand The user's hand of cards.
+     * @return The dealer's hand of selected cards.
+     */
+    private Hand dealerChooseCards(Hand hand) {
+        Hand dealerHand = new Hand();
+
+        // Loop through the cards the user picked
+        for (Card card : hand.getHand()) {
+            // Check if the card's suit is HEARTS or DIAMONDS
+            if (card.getSuit() == Suit.HEARTS || card.getSuit() == Suit.DIAMONDS) {
+                // Add the card to the dealer's hand
+                dealerHand.addCard(card);
+            }
+        }
+
+        // Return the dealer's hand
+        return dealerHand;
     }
 }
