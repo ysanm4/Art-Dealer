@@ -22,6 +22,16 @@
  Homework 2
  Now the program lets you pick your own cards, rather than the cards being randomly dealt to you. This iteration
  also adds the history of your previous hands to the display on the game screen.
+
+ Homework 3
+ The program now displays each card as soon as the user makes a selection, following a sequential rhythm: first card
+ selected is immediately displayed, second card selected is displayed next, and so on until the fourth card is
+ displayed. Once displayed, a card remains visible until the current round ends. If the user attempts to select a card
+ that has already been chosen in the current round, the program issues a polite error message and prompts for a
+ different card. After the user selects four cards, the program "picks" a subset of those cards based on the
+ Art Dealer's pattern. The Art Dealer (program) selects any red cards (hearts or diamonds) and avoids selecting
+ any black cards (spades or clubs). The selected cards are displayed visibly to the user, and the program pauses
+ until the user indicates to stop.
  */
 
 package main;
