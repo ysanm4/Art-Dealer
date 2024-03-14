@@ -12,6 +12,9 @@
  ### Homework 2
  Now the program lets you pick your cards, rather than the cards being randomly dealt to you. This iteration also adds the history of your previous hands to the display on the game screen.
 
+  ### Homework 3
+  This iteration enhances the game by immediately displaying each card as the user makes a selection. The Art Dealer, represented by the program, selects cards based on a predefined pattern: choosing red cards (hearts or diamonds) while avoiding black cards (spades or clubs). The user can continue to pick four cards per round, with the program displaying the selections and waiting for the user's decision to continue or stop. Selected cards, along with the Art Dealer's picks are added to the user's history for reference.
+
  ## Screenshots
  ### Welcome Screen
  <img width="912" alt="Screenshot 2024-03-05 at 12 30 52 PM" src="https://github.com/DustinYochim/Art-Dealer/assets/70305015/c3281024-f00e-4f05-88b4-7e016656e3bc">
