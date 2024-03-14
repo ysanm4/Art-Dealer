@@ -79,6 +79,11 @@ public class GameController {
             gui.displayPrevious(hand.format_hand_for_logger());
             File.writeToFile(hand.format_hand_for_logger());
         }
+
+        // Reset chosenByDealer attributes to false for all cards in the hand
+        for (Card card : hand.getHand()) {
+            card.setChosenByDealer(false);
+        }
     }
 
     /**
@@ -94,6 +99,8 @@ public class GameController {
         for (Card card : hand.getHand()) {
             // Check if the card's suit is HEARTS or DIAMONDS
             if (card.getSuit() == Suit.HEARTS || card.getSuit() == Suit.DIAMONDS) {
+                // Set chosenByDealer attribute to true for the selected card
+                card.setChosenByDealer(true);
                 // Add the card to the dealer's hand
                 dealerHand.addCard(card);
             }

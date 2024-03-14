@@ -6,19 +6,33 @@ package main.model;
 
 /**
  * Represents a playing card. Contains methods for formatting the card in different ways.
- * @param rank The card's rank.
- * @param suit The card's suit.
  */
-public record Card(Rank rank, Suit suit) {
+public class Card {
+    private final Rank rank;
+    private final Suit suit;
+    private boolean chosenByDealer = false;
+
+    /**
+     * Constructor for the Card class.
+     * @param rank The rank of the card.
+     * @param suit The suit of the card.
+     */
+    public Card(Rank rank, Suit suit) {
+        this.rank = rank;
+        this.suit = suit;
+    }
     /**
      * @return A card formatted for logging.
      */
     public String format_card_for_logger() {
         String rankString = format_rank_for_logger();
         String suitString = format_suit_for_logger();
-        return rankString + suitString;
+        if (this.chosenByDealer) {
+            return "*" + rankString + suitString + "*";
+        } else {
+            return rankString + suitString;
+        }
     }
-
     /**
      * @return The file path for the current card.
      */
@@ -88,5 +102,19 @@ public record Card(Rank rank, Suit suit) {
      */
     public Suit getSuit() {
         return this.suit;
+    }
+    /**
+     * @return Whether the card has been chosen by the dealer.
+     */
+    public boolean getChosenByDealer(){
+        return chosenByDealer;
+    }
+
+    /**
+     * Sets whether the card has been chosen by the dealer.
+     * @param b The value to set.
+     */
+    public void setChosenByDealer(boolean b) {
+        this.chosenByDealer = b;
     }
 }
