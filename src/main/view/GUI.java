@@ -47,6 +47,21 @@ public class GUI {
         frame.setLocationRelativeTo(null);
     }
 
+
+    // Author Yosef Alqufidi. Display message
+    public void displayMessage(String message) {
+        JOptionPane.showMessageDialog(null, message);
+    }
+
+
+    // In your GUI.java class
+    public void displayLargeMessage(String message) {
+        // Customize this method as needed for your application's requirements
+        JOptionPane.showMessageDialog(null, message, "Game Over", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+
+
     /**
      * Starts the game by showing the welcome screen.
      */
@@ -210,8 +225,14 @@ public class GUI {
             ImageIcon resizedIcon = new ImageIcon(scaledImage);
             JLabel imageLabel = new JLabel(resizedIcon);
 
-            // adds padding between the cards
-            imageLabel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+            // Check if the card was chosen by the dealer
+            if (card.getChosenByDealer()) {
+                // Add a border to the card if chosen by the dealer
+                imageLabel.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
+            } else {
+                // Otherwise, add an empty border
+                imageLabel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+            }
 
             cardPanel.add(imageLabel);
         }
@@ -238,75 +259,75 @@ public class GUI {
      * Display's a window, allowing the user to select which cards to be added to his hand.
      * @return An array of cards to be added to the user's hand.
      */
-public Card[] displayChoice() {
-    // Arrays for the suits and ranks
-    String[] suits = {"CLUBS", "DIAMONDS", "HEARTS", "SPADES"};
-    String[] ranks = {"ACE", "TWO", "THREE", "FOUR", "FIVE", "SIX", "SEVEN",
-            "EIGHT", "NINE", "TEN", "JACK", "QUEEN", "KING"};
-    Card[] userHand = new Card[4];
-    Hand hand = new Hand();
+    public Card[] displayChoice() {
+        // Arrays for the suits and ranks
+        String[] suits = {"CLUBS", "DIAMONDS", "HEARTS", "SPADES"};
+        String[] ranks = {"ACE", "TWO", "THREE", "FOUR", "FIVE", "SIX", "SEVEN",
+                "EIGHT", "NINE", "TEN", "JACK", "QUEEN", "KING"};
+        Card[] userHand = new Card[4];
+        Hand hand = new Hand();
 
-    for (int i = 0; i < 4; i++) {
-        JComboBox<String> suitComboBox = new JComboBox<>(suits);
-        JComboBox<String> rankComboBox = new JComboBox<>(ranks);
+        for (int i = 0; i < 4; i++) {
+            JComboBox<String> suitComboBox = new JComboBox<>(suits);
+            JComboBox<String> rankComboBox = new JComboBox<>(ranks);
 
 
 
-        // Create a JPanel to hold the JComboBoxes and labels
-        JPanel panel = new JPanel();
-        panel.add(new JLabel("Select a Rank:"));
-        panel.add(rankComboBox);
-        panel.add(new JLabel("Select a Suit:"));
-        panel.add(suitComboBox);
+            // Create a JPanel to hold the JComboBoxes and labels
+            JPanel panel = new JPanel();
+            panel.add(new JLabel("Select a Rank:"));
+            panel.add(rankComboBox);
+            panel.add(new JLabel("Select a Suit:"));
+            panel.add(suitComboBox);
 
-        // Show the pop-up window with the drop-down menus
-        int result = JOptionPane.showConfirmDialog(null, panel, "Select a Card",
-                JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+            // Show the pop-up window with the drop-down menus
+            int result = JOptionPane.showConfirmDialog(null, panel, "Select a Card",
+                    JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 
-        // Check if the user made a selection
-        if (result == JOptionPane.OK_OPTION) {
-            // Get the selected suit and rank
-            String selectedRank = (String) rankComboBox.getSelectedItem();
-            String selectedSuit = (String) suitComboBox.getSelectedItem();
-            // Convert the string to the Suit enum
-            // https://www.geeksforgeeks.org/converting-a-string-to-an-enum-in-java/
-            try {
-                Suit suitToEnum = Suit.valueOf(selectedSuit);
-                Rank rankToEnum = Rank.valueOf(selectedRank);
-                // https://www.w3schools.com/java/java_classes.asp
-                Card card = new Card(rankToEnum, suitToEnum);
-                // Check if the card is already selected
-                if (!selectedCardsSet.contains(card)) {
-                    // Add the selected card to the list and set
-                    userHand[i] = card;
-                    hand.addCard(card);
-                    displayHand(hand);
-                    selectedCardsSet.add(card);
+            // Check if the user made a selection
+            if (result == JOptionPane.OK_OPTION) {
+                // Get the selected suit and rank
+                String selectedRank = (String) rankComboBox.getSelectedItem();
+                String selectedSuit = (String) suitComboBox.getSelectedItem();
+                // Convert the string to the Suit enum
+                // https://www.geeksforgeeks.org/converting-a-string-to-an-enum-in-java/
+                try {
+                    Suit suitToEnum = Suit.valueOf(selectedSuit);
+                    Rank rankToEnum = Rank.valueOf(selectedRank);
+                    // https://www.w3schools.com/java/java_classes.asp
+                    Card card = new Card(rankToEnum, suitToEnum);
+                    // Check if the card is already selected
+                    if (!selectedCardsSet.contains(card)) {
+                        // Add the selected card to the list and set
+                        userHand[i] = card;
+                        hand.addCard(card);
+                        displayHand(hand);
+                        selectedCardsSet.add(card);
 
-                } else {
-                    // Display a message or handle the case where the same card is selected again
-                    int alreadyPicked = JOptionPane.showConfirmDialog(null, panel, "You already selected this card. Please try again.",
-                            JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
-                    i--; // Decrement the loop counter to prompt the user for the same position again
+                    } else {
+                        // Display a message or handle the case where the same card is selected again
+                        int alreadyPicked = JOptionPane.showConfirmDialog(null, panel, "You already selected this card. Please try again.",
+                                JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+                        i--; // Decrement the loop counter to prompt the user for the same position again
+                    }
+
+                    // Add the selected card to the list
+                    userHand[i] = new Card(rankToEnum, suitToEnum);
+                } catch (IllegalArgumentException e) {
+                    System.out.println("There was an error " + e);
                 }
-
-                // Add the selected card to the list
-                userHand[i] = new Card(rankToEnum, suitToEnum);
-            } catch (IllegalArgumentException e) {
-                System.out.println("There was an error " + e);
+            } else {
+                System.out.println("User canceled the selection.");
+                // Clearing the selected cards
+                selectedCardsSet.clear();
+                hand.clear();
+                displayHand(hand);
+                return null;
             }
-        } else {
-            System.out.println("User canceled the selection.");
-            // Clearing the selected cards
-            selectedCardsSet.clear();
-            hand.clear();
-            displayHand(hand);
-            return null;
         }
+        selectedCardsSet.clear();
+        return userHand;
     }
-    selectedCardsSet.clear();
-    return userHand;
-}
 
     /*
     The program's action listeners are defined in the game controller so that they can return the flow to the

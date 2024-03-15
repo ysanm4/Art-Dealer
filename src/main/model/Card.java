@@ -21,6 +21,7 @@ public class Card {
         this.rank = rank;
         this.suit = suit;
     }
+
     /**
      * @return A card formatted for logging.
      */
@@ -33,10 +34,12 @@ public class Card {
             return rankString + suitString;
         }
     }
+
     /**
      * @return The file path for the current card.
      */
     public String getImageFilePath() {
+        // Assuming format_rank_for_image_path() and format_suit_for_image_path() are correctly defined
         return format_rank_for_image_path() + "_of_" + format_suit_for_image_path() + ".png";
     }
 
@@ -91,22 +94,23 @@ public class Card {
     }
 
     /**
-     * @return The suit of the current card, formatted for the image path.
-     */
-    private String format_suit_for_image_path() {
-        return suit.name().toLowerCase();
-    }
-
-    /**
      * @return The suit of the current card.
      */
     public Suit getSuit() {
         return this.suit;
     }
+
+    /**
+     * @return The rank of the current card.
+     */
+    public Rank getRank() {
+        return this.rank;
+    }
+
     /**
      * @return Whether the card has been chosen by the dealer.
      */
-    public boolean getChosenByDealer(){
+    public boolean getChosenByDealer() {
         return chosenByDealer;
     }
 
@@ -117,4 +121,9 @@ public class Card {
     public void setChosenByDealer(boolean b) {
         this.chosenByDealer = b;
     }
+
+    public String format_suit_for_image_path() {
+        return this.suit.name().toLowerCase();
+    }
+
 }
